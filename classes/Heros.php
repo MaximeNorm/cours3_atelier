@@ -11,8 +11,8 @@ class Heros
      * Constructeur
      *
      * @param string $nom
-     * @param [type] $arme
-     * @param [type] $sante
+     * @param Arme $arme
+     * @param int $sante
      */
     public function __construct($nom, $arme, $sante = 100)
     {
@@ -47,22 +47,6 @@ class Heros
     public function attaquer($ennemi)
     { // $ennemi contient l'objet de l'autre héros  
 
-        /*
-            PSEUDO-CODE
-            - Créer un nombre aléatoire
-
-            si nb == 0
-                l'attaque a réussi
-                afficher message pour le résultat de l'attaque
-                soustraire les dégâts sur l'ennemi
-            si nb == 1
-                l'attaque a échoué
-                afficher message
-            si nb == 2
-                l'attaque réussie est critique
-                afficher message
-                soustraire les dégâts    
-        */
         $nb = rand(0, 2);
 
         if ($nb == 0) {
@@ -72,14 +56,13 @@ class Heros
             // Soustraire les dégâts de la santé de l'ennemi
             $ennemi->recevoirDegats($degats_infliges);
 
-            return "$this->nom attaque $ennemi->getNom()
-            et lui inflige $degats_infliges de dégâts";
+            return "$this->nom attaque " . $ennemi->getNom() . " et lui inflige $degats_infliges de dégâts";
         }
 
         if ($nb == 1) {
-            return "$this->nom attaque $ennemi->getNom()
-            et n'a pas réussi";
+            return "$this->nom attaque " . $ennemi->getNom() . " et n'a pas réussi";
         }
+
 
         // Récupération des dégâts faits par l'arme du héros
         $degats_infliges = $this->arme->getDegats() * 4;
@@ -87,6 +70,16 @@ class Heros
         // Soustraire les dégâts de la santé de l'ennemi
         $ennemi->recevoirDegats($degats_infliges);
 
-        return "$this->nom effectue une attaque critique sur $ennemi->getNom() et lui inflige $degats_infliges de dégâts";
+        return "$this->nom effectue une attaque critique sur " . $ennemi->getNom() . " et lui inflige $degats_infliges de dégâts";
+    }
+
+    /**
+     * Détermine si le héros est vivant
+     *
+     * @return bool
+     */
+    public function estVivant()
+    {
+        return $this->sante > 0;
     }
 }
