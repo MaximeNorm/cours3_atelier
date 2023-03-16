@@ -9,5 +9,3 @@ $lance = new Arme("Lance Ahonan", 10);
 
 $chuck = new Heros("Chuck Noriss", $epee);
 $jet = new Heros("Jet Lee", $lance);
-
-var_dump($chuck, $jet);
