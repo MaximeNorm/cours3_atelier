@@ -1,13 +1,13 @@
 <?php
 
 require("classes/Arme.php");
-require("classes/Hero.php");
+require("classes/Heros.php");
 
 $epee = new Arme("Épée de Damoclès", 15);
 $lance = new Arme("Lance Ahonan", 10);
 
-$epee->setNom("");
-var_dump($epee->getNom());
 
-$hero1 = new Hero("Chuck Noriss", 100);
-$hero2 = new Hero("Jet Lee", 100);
+$chuck = new Heros("Chuck Noriss", $epee);
+$jet = new Heros("Jet Lee", $lance);
+
+var_dump($chuck, $jet);
